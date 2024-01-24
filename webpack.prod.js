@@ -2,9 +2,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './public/javascripts/main.js', // Adjust the entry point based on your project
-  mode: 'development',
+  mode: 'production',
   output: {
-    // filename: 'bundle.js',
+    filename: 'bundle.js',
     path: __dirname + '/public/dist',
   },
   module: {
@@ -20,6 +20,4 @@ module.exports = {
       filename: 'styles.min.css',
     }),
   ],
-  watch: true,
-  devtool: 'inline-source-map',
 };

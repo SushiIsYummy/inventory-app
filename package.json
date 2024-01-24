@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node --env-file=.env ./bin/www",
-    "build": "npx webpack --config webpack.config.js",
+    "build": "npx webpack --config webpack.prod.js",
     "devstart": "nodemon --env-file=.env ./bin/www",
     "dev:server": "npx webpack --mode development --watch",
     "dev:backend": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
