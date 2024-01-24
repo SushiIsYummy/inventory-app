@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  div.create-drawmon-page
+    form.create-form(method='POST')
+      div.left-side
+        h1=title
+        div.input-group
+          label(for='name') Name:
+          p #{drawmon ? drawmon.name : ''}
+        div.input-group
+          label(for='description') Description:
+          p #{drawmon ? drawmon.description : ''}
+        div.input-group
+          label Type:
+          if drawmon && drawmon.type.length > 0
+            p #{drawmon.type.map(type => type.name).join(', ')}
+          else 
+            p None.
+        div.input-group
+          label(for='special_ability') Special Ability:
+          p #{drawmon ? drawmon.special_ability : ''}
+        a.updateDrawmonButton(href=`${drawmon.url}/update`) Update Drawmon
+        a.updateDrawmonButton(href=`${drawmon.url}/delete`) Delete Drawmon
+      div.right-side
+        p Drawmon Appearance
+        section.draw
+          canvas#drawingCanvas(width='600' height='600')
+      input(type='hidden' name='image_data' value='') 
+
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+    
+  script(id="drawScript" data-allow-draw=(allow_draw) data-image-data=(drawmon ? drawmon.image_data : '') src='/javascripts/drawCanvas.js' defer)

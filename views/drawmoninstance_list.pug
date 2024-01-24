@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div.drawmon-list-page
+    h1 All Drawmon Instances 
+      a.create-drawmon-instance-link(href='/catalog/drawmoninstance/create') + Create Drawmon Instance
+    div.drawmoninstances-group-container
+      each drawmoninstance_group in drawmoninstance_list 
+        div.drawmoninstances-group
+          h1 #{drawmoninstance_group._id.name}
+          div.drawmon-instance-item
+            each drawmoninstance in drawmoninstance_group.instances
+              div.img-and-name(onclick=`window.location.href='/catalog/drawmoninstance/${drawmoninstance._id}'`)
+                img(src=(drawmoninstance_group._id.image_data[0]), alt='')
+                div.personal-name-and-background-info
+                  p.personal-name #{drawmoninstance.personal_name}
+                  p.background-info #{drawmoninstance.background_info}

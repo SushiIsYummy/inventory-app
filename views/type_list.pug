@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div.drawmon-list-page
+    h1 All Types 
+      a.create-type-link(href='/catalog/drawmon/create') + Create Type
+    div.drawmon-list-container
+      each type in type_list
+        div.drawmon-item(onclick=`window.location.href='/catalog/type/${type._id}'`)
+          img(src=(type.image_data), alt='')
+          div.name-and-description
+            p.name #{type.name}
+            p.description #{type.description}

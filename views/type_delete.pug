@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  div.create-drawmon-page
+    form.create-form(method='POST')
+      div.left-side
+        h1=title
+        div.input-group
+          label(for='type') Type:
+          p #{type ? type.name : ''}
+        div.input-group
+          label(for='description') Description:
+          p #{type ? type.description : ''}
+        a.updateDrawmonButton(href=`${type.url}/update`) Update Type
+        
+        if delete_type === 'true'
+          p Are you sure want to delete this type?
+          div.actionButtons
+            button.deleteButton Delete Type
+        else 
+          p You must update or delete all Drawmons that use this type so that no Drawmons use this type before deleting this type.
+      div.right-side
+        p Type Icon
+        section.draw
+          canvas#drawingCanvas(width='600' height='600')
+
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+
+  script(id="drawScript" data-allow-draw=(allow_draw) data-image-data=(type ? type.image_data : '') src='/javascripts/drawCanvas.js' defer)
+  

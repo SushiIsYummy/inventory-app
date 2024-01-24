@@ -1,5 +1,21 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div.home
+    div.drawmon-info-container
+      div.drawmon-info-top
+        div.drawmon-info
+          h2 What is a Drawmon?
+          p 
+            | A Drawmon is a creature you can create by drawing its appearance 
+            | and defining its type, special ability, and other characteristics. You can either create a new
+            | and unique Drawmon or create an instance of a Drawmon.
+            | It's a fun and interactive way to bring your creative ideas to life in the world of Drawmons!
+        div.drawmon-stats
+          h2 Stats
+          p Unique Drawmons: #{number_of_drawmons || 0}
+          p Total Drawmons: #{number_of_drawmon_instances || 0}
+      div.drawmon-info-bottom
+        a(href='/catalog/drawmon/create') CREATE A NEW DRAWMON
+        a(href='/catalog/drawmoninstance/create') CREATE A DRAWMON INSTANCE
+        a(href='/catalog/type/create') CREATE A NEW TYPE

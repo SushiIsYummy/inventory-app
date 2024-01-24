@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  div.create-drawmon-page
+    form.create-form(method='POST')
+      div.left-side
+        h1=title
+        div.input-group
+          label(for='name') Name:
+          input(type='text', placeholder='Horse Man' name='name' required value=(drawmon ? drawmon.name : ''))
+        div.input-group
+          label(for='description') Description:
+          textarea(type='text', placeholder='They are creatures who eat people for fun...' name='description' value=(dramon ? drawmon.description : ''))
+            | #{drawmon ? drawmon.name : ''}
+        div.input-group
+          label Type: 
+          div.type-checkboxes
+            each type in type_list
+              div.type-checkbox
+                label 
+                  if type.checked
+                    input(type='checkbox' name='type' value=type._id checked) 
+                    | #{type.name}
+                  else
+                    input(type='checkbox' name='type' value=type._id
+                    ) 
+                    | #{type.name}
+            else 
+              p No types found.
+        div.input-group
+          label(for='special_ability') Special Ability:
+          textarea(type='text', placeholder='Have the ability to see the future...' name='special_ability')
+            | #{drawmon ? drawmon.name: ''}
+        button(type='submit') Submit
+      div.right-side
+        p Draw your Drawmon!
+        section.draw
+          canvas#drawingCanvas(width='600' height='600')
+          div.right-side
+            div.options
+              input#colorPicker(type='color')
+              button#drawButton(type='button') Draw
+              button#eraseButton(type='button') Erase
+            button#clearButton(type='button') Clear
+      input(type='hidden' name='image_data' value='') 
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+      
+  script(id="drawScript" data-allow-draw=(allow_draw) data-image-data=(type ? type.image_data : '') src='/javascripts/drawCanvas.js' defer)
+
+  

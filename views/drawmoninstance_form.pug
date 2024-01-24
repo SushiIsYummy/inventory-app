@@ -1,0 +1,96 @@
+extends layout
+
+block content
+  if drawmon_list && drawmon_list.length <= 0
+    div.no-existing-drawmons
+      h1=title 
+      p There are currently no existing Drawmons. Please create at least one Drawmon 
+        | before creating a Drawmon instance.
+  else
+    div.create-drawmon-page
+      form.create-form(method='POST')
+        div.left-side
+          h1=title
+          div.input-group
+            label(for='personal_name') Personal Name:
+            input(type='text', placeholder='Steve' name='personal_name' value=(drawmon_instance ? drawmon_instance.personal_name : '') required)
+          div.input-group
+            label(for='background_info') Background Info:
+            textarea(type='text', placeholder='Has 10 brothers and 4 dogs...' name='background_info')
+              | #{drawmon_instance ? drawmon_instance.background_info : ''}
+          div.input-group
+            label(for='likes') Likes:
+            input(type='text', placeholder='Fruits, cars, airplanes, dogs...' name='likes' value=(drawmon_instance ? drawmon_instance.likes : '') )
+          div.input-group
+            label(for='dislikes') Dislikes:
+            input(type='text', placeholder='Vegetables, smelly people, cats...' name='dislikes' value=(drawmon_instance ? drawmon_instance.dislikes : '') )
+          div.input-group
+            label(for='hobbies') Hobbies:
+            input(type='text', placeholder='Biking, soccer, running...' name='hobbies' value=(drawmon_instance ? drawmon_instance.hobbies : '') )
+          div.input-group
+            label(for='other_info') Other info:
+            textarea(type='text', placeholder='' name='other_info')
+              | #{drawmon_instance ? drawmon_instance.other_info : ''}
+          button(type='submit') Submit
+        div.right-side
+          p Chosen Drawmon: 
+            select.drawmon-select(name='selected_drawmon' required) 
+              option(value='') -- Please select a Drawmon --
+              each drawmon, index in drawmon_list
+                if drawmon_instance && (drawmon_instance.drawmon._id.toString() === drawmon._id.toString())
+                  option(value=([drawmon._id, index]) selected)= drawmon.name
+                else 
+                  option(value=([drawmon._id, index]))= drawmon.name
+
+          section.draw
+            canvas#drawingCanvas(width='600' height='600')
+            script(id="drawScript" data-allow-draw=(allow_draw) data-image-data=(drawmon_instance ? drawmon_instance.drawmon.image_data : '') src='/javascripts/drawCanvas.js' defer)
+        input(type='hidden' name='image_data' value='') 
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+  
+  script.
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get the select element by its ID
+        const drawmonList = !{JSON.stringify(drawmon_list)};
+        console.log(drawmonList[0])
+        //- console.log(drawmonList)
+        // Add an event listener for the 'change' event
+        const selectElement = document.querySelector('.drawmon-select');
+        selectElement?.addEventListener('change', function(event) {
+          // Get the selected value
+          let selectedValue = event.target.value;
+          const canvas = document.getElementById('drawingCanvas');
+          const ctx = canvas.getContext('2d');
+          if (selectedValue === '') {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            return;
+          }
+          selectedValue = JSON.parse(selectedValue);  
+
+          //- console.log(selectedValue);
+          //- console.log(selectedValue[1]);
+          //- console.log(p);
+          // Perform actions based on the selected value
+          console.log('Selected value:', selectedValue);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const base64ImageData = !{JSON.stringify(drawmon_list)}[selectedValue[1]].image_data;
+
+          // Create an Image object
+          const img = new Image();
+
+          // Set the source of the image using the base64-encoded data
+          img.src = base64ImageData;
+
+          // When the image is loaded, draw it on the canvas
+          img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+          };
+          // Add your custom logic here
+          // For example, you can make an AJAX request or update the DOM based on the selection
+        });
+      });
+  

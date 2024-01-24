@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  div.create-drawmon-page
+    form.create-form(method='POST')
+      div.left-side
+        h1=title
+        div.input-group
+          label(for='type') Type:
+          input(type='text' name='name' placeholder='Fire' value=(type ? type.name : '') required)
+        div.input-group
+          label(for='description') Description:
+          textarea(type='text' name='description' placeholder='Fire type Drawmons utilize the element of fire' required)
+            | #{type ? type.description : ''}
+        button(type='submit') Submit
+      div.right-side
+        p Draw your Type icon!
+        section.draw
+          canvas#drawingCanvas(width='600' height='600')
+          div.right-side
+            div.options
+              input#colorPicker(type='color')
+              button#drawButton(type='button') Draw
+              button#eraseButton(type='button') Erase
+            button#clearButton(type='button') Clear
+      input(type='hidden' name='image_data' value='') 
+
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+          
+  script(id="drawScript" data-allow-draw=(allow_draw) data-image-data=(type ? type.image_data : '') src='/javascripts/drawCanvas.js' defer)
+  

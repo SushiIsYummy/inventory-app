@@ -1,0 +1,61 @@
+.home {
+  display: flex;
+  align-self: center;
+  flex: 1;
+  max-width: 1000px;
+  padding-top: 50px;
+}
+
+.drawmon-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: fit-content;
+}
+
+.drawmon-info-top {
+  display: flex;
+  gap: 20px;
+}
+
+.drawmon-info {
+  font-size: 2rem;
+}
+
+.drawmon-info h2 {
+  color: blue;
+}
+.drawmon-stats {
+  font-size: 2rem;
+}
+
+.drawmon-stats h2 {
+  color: green;
+}
+
+.drawmon-info,
+.drawmon-stats {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.drawmon-info-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.drawmon-info-bottom a {
+  text-decoration: none;
+  text-align: center;
+  font-size: 2rem;
+  border-radius: 10px;
+  background-color: gray;
+  padding: 10px 20px;
+}
+
+.drawmon-info-bottom a:visited,
+.drawmon-info-bottom a:link {
+  color: rgb(0, 0, 0);
+}

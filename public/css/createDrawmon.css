@@ -1,0 +1,136 @@
+.create-drawmon-page,
+.create-type-page {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  margin-top: 50px;
+}
+
+form.create-form {
+  display: flex;
+  gap: 20px;
+  max-width: 1400px;
+}
+
+form.create-form > div.left-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  flex: 1;
+}
+
+form.create-form > div.left-side label,
+form.create-form > div.right-side p {
+  font-size: 1.5rem;
+}
+
+form.create-form > div.left-side button[type='submit'] {
+  align-self: flex-start;
+  background-color: rgb(29, 170, 180);
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+form.create-form .input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+form.create-form .input-group input {
+  padding: 2px 5px;
+}
+
+form.create-form .input-group textarea {
+  padding: 5px;
+  max-width: 100%;
+}
+
+form.create-form .input-group input,
+form.create-form .input-group textarea {
+  font-size: 1rem;
+}
+
+form.create-form .type-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.paintButtonActive {
+  outline: 2px solid green;
+}
+
+section.draw {
+  display: flex;
+}
+
+section.draw .options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+section.draw .right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+section.draw .right-side #clearButton {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+#loadFileInput {
+  display: hidden;
+}
+
+#drawingCanvas {
+  background-color: white;
+  border: 1px solid #000;
+}
+
+#eraseButton,
+#drawButton {
+  border-radius: 10px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.no-existing-drawmons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+form.create-form .actionButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+form.create-form .actionButtons button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+}
+
+form.create-form .actionButtons .deleteButton {
+  color: white;
+  background-color: red;
+}

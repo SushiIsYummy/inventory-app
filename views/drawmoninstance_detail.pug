@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  div.create-drawmon-page
+    form.create-form(method='POST')
+      div.left-side
+        h1=title
+        div.input-group
+          label(for='personal_name') Personal Name:
+          p #{drawmon_instance ? drawmon_instance.personal_name : ''}
+        div.input-group
+          label(for='background_info') Background Info:
+          p #{drawmon_instance ? drawmon_instance.background_info : ''}
+        div.input-group
+          label(for='likes') Likes:
+          p #{drawmon_instance ? drawmon_instance.likes : ''}
+        div.input-group
+          label(for='dislikes') Dislikes:
+          p #{drawmon_instance ? drawmon_instance.dislikes : ''}
+        div.input-group
+          label(for='hobbies') Hobbies:
+          p #{drawmon_instance ? drawmon_instance.hobbies : ''}
+        div.input-group
+          label(for='other_info') Other info:
+          p #{drawmon_instance ? drawmon_instance.other_info : ''}
+        a.updateDrawmonButton(href=`${drawmon_instance.url}/update`) Update Drawmon
+        a.updateDrawmonButton(href=`${drawmon_instance.url}/delete`) Delete Drawmon
+
+      div.right-side
+        p Drawmon: #{drawmon_instance.drawmon.name}
+        section.draw
+          canvas#drawingCanvas(width='600' height='600')
+          input(type='hidden' name='image_data' value='') 
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
+    
+  script(id="drawScript" data-allow-draw=(allow_draw) data-image-data=(drawmon_instance ? drawmon_instance.drawmon.image_data : '') src='/javascripts/drawCanvas.js' defer)

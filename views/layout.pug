@@ -2,6 +2,13 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/dist/styles.min.css')
   body
+    header 
+      a(href='/catalog') DrawmonWorld
+      nav 
+        a(href='/catalog') Home 
+        a(href='/catalog/drawmons') Drawmons 
+        a(href='/catalog/drawmoninstances') DrawmonInstances
+        a(href='/catalog/types') Types 
     block content

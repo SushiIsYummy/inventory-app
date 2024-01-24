@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  div.drawmon-list-page
+    h1 All Drawmons 
+      a.create-drawmon-link(href='/catalog/drawmon/create') + Create Drawmon
+    div.drawmon-list-container
+      each drawmon in drawmon_list 
+        div.drawmon-item(onclick=`window.location.href='/catalog/drawmon/${drawmon._id}'`)
+          img(src=(drawmon.image_data), alt='')
+          div.name-and-type
+            p.name #{drawmon.name}
+            p Type: 
+            p.type 
+              if drawmon.type.length <= 0
+                | None.
+              else
+                | #{drawmon.type.map(type => type.name).join(', ')}

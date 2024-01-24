@@ -1,0 +1,79 @@
+.drawmon-list-page {
+  flex: 1;
+  max-width: 1800px;
+  padding: 50px 50px 0;
+}
+
+.drawmon-list-page > h1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.drawmon-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.create-drawmon-link,
+.create-drawmon-instance-link,
+.create-type-link {
+  font-size: 1.2rem;
+}
+
+.drawmon-item {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.drawmon-item .name-and-type {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawmon-item .name-and-type .name {
+  color: green;
+  font-size: 1.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: bold;
+  overflow: hidden;
+  word-break: break-all;
+}
+.drawmon-item .name-and-type .type {
+  color: rgb(80, 79, 79);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.drawmon-item img {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+.drawmon-item .name-and-description .name {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-weight: bold;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.drawmon-item .name-and-description .description {
+  color: rgb(65, 65, 65);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}

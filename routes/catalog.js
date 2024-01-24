@@ -3,9 +3,11 @@ const router = express.Router();
 
 // Require controller modules.
 const drawmon_controller = require('../controllers/drawmonController');
+const drawmoninstance_controller = require('../controllers/drawmonInstanceController');
 const type_controller = require('../controllers/typeController');
 
 // GET catalog home page.
+
 router.get('/', drawmon_controller.index);
 
 /// drawmon ROUTES ///
@@ -33,6 +35,56 @@ router.get('/drawmon/:id', drawmon_controller.drawmon_detail);
 
 // GET request for list of all drawmons.
 router.get('/drawmons', drawmon_controller.drawmon_list);
+
+/// drawmon instance ROUTES ///
+
+// GET request for creating drawmon. NOTE This must come before route for id (i.e. display drawmon).
+router.get(
+  '/drawmoninstance/create',
+  drawmoninstance_controller.drawmoninstance_create_get
+);
+
+// POST request for creating drawmon.
+router.post(
+  '/drawmoninstance/create',
+  drawmoninstance_controller.drawmoninstance_create_post
+);
+
+// GET request to delete drawmon.
+router.get(
+  '/drawmoninstance/:id/delete',
+  drawmoninstance_controller.drawmoninstance_delete_get
+);
+
+// POST request to delete drawmon.
+router.post(
+  '/drawmoninstance/:id/delete',
+  drawmoninstance_controller.drawmoninstance_delete_post
+);
+
+// GET request to update drawmon.
+router.get(
+  '/drawmoninstance/:id/update',
+  drawmoninstance_controller.drawmoninstance_update_get
+);
+
+// POST request to update drawmon.
+router.post(
+  '/drawmoninstance/:id/update',
+  drawmoninstance_controller.drawmoninstance_update_post
+);
+
+// GET request for one drawmon.
+router.get(
+  '/drawmoninstance/:id',
+  drawmoninstance_controller.drawmoninstance_detail
+);
+
+// GET request for list of all drawmons.
+router.get(
+  '/drawmoninstances',
+  drawmoninstance_controller.drawmoninstance_list
+);
 
 /// type ROUTES ///
 
